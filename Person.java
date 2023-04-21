@@ -1,0 +1,61 @@
+package dev.m3s.programming2.homework3;
+import java.util.concurrent.ThreadLocalRandom;
+
+public abstract class Person {
+
+        private String firstName = ConstantValues.NO_NAME;
+        private String lastName = ConstantValues.NO_NAME;
+        private String birthDate = ConstantValues.NO_BIRTHDATE;
+
+        Person(String lname, String fname){
+
+            setLastName(lname);
+            setFirstName(fname);
+        }
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public String getLastName() {
+            return lastName;
+        }
+
+        public void setFirstName(String firstName) {
+            
+            if(firstName != null && firstName != ""){
+            this.firstName = firstName;}
+        }
+
+        public void setLastName(String lastName) {
+
+            if(lastName != null && lastName != ""){
+            this.lastName = lastName;}
+        }
+
+        public String getBirthDate(){
+            return birthDate;
+        }
+        
+        public String setBirthDate(String personId){
+        
+        PersonID personID = new PersonID();
+
+        if(personID.setPersonID(personId) == "Ok"){
+                birthDate = personID.getBirthDate();
+                return birthDate;
+            }else{
+                return "No change";
+            }
+        }
+
+        protected int getRandomId(final int min, final int max){
+
+           int id = ThreadLocalRandom.current().nextInt(min, max + 1);
+            
+            return id;
+        }
+
+        public abstract String getIdString();
+
+}
